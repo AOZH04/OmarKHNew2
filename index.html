@@ -80,13 +80,43 @@
 					</div>
 
 					<div class="hero_card">
-						<h1 class="hero_title">
-							Authentic Hotel
-							<span class="hero_title_row">in <em>Bukhara</em></span>
-						</h1>
-						<p class="hero_lead">
-							Thirty-two rooms in the old city — five minutes on foot from Po-i-Kalyan, the Ark and Lyabi-Hauz.
-						</p>
+						<div class="booking_card" id="book">
+
+							<div class="booking_header">
+								<span class="booking_seal" aria-hidden="true">
+									<img src="img/ornament_arch.svg" alt="">
+								</span>
+								<div class="booking_header_text">
+									<h2 class="booking_title">Reserve your <em>stay</em>.</h2>
+								</div>
+							</div>
+
+							<form class="booking_form" action="#" method="get">
+								<div class="booking_field">
+									<label class="booking_label">Check-in</label>
+									<input class="booking_input" type="date">
+								</div>
+								<span class="booking_divider"></span>
+								<div class="booking_field">
+									<label class="booking_label">Check-out</label>
+									<input class="booking_input" type="date">
+								</div>
+								<span class="booking_divider"></span>
+								<div class="booking_field">
+									<label class="booking_label">Guests</label>
+									<select class="booking_input">
+										<option>1 guest</option>
+										<option selected>2 guests</option>
+										<option>3 guests</option>
+										<option>4 guests</option>
+									</select>
+								</div>
+								<div class="booking_submit_wrap">
+									<input class="booking_submit" type="submit" value="Check availability →">
+								</div>
+							</form>
+
+						</div>
 					</div>
 
 				</div>
@@ -95,47 +125,17 @@
 
 		</section>
 
-		<div class="booking_strip" id="book">
-			<div class="booking_strip_inner">
-				<div class="booking_card">
-
-					<div class="booking_header">
-						<span class="booking_seal" aria-hidden="true">
-							<img src="img/ornament_arch.svg" alt="">
-						</span>
-						<div class="booking_header_text">
-							<h2 class="booking_title">Reserve your <em>stay</em>.</h2>
-						</div>
-					</div>
-
-					<form class="booking_form" action="#" method="get">
-						<div class="booking_field">
-							<label class="booking_label">Check-in</label>
-							<input class="booking_input" type="date">
-						</div>
-						<span class="booking_divider"></span>
-						<div class="booking_field">
-							<label class="booking_label">Check-out</label>
-							<input class="booking_input" type="date">
-						</div>
-						<span class="booking_divider"></span>
-						<div class="booking_field">
-							<label class="booking_label">Guests</label>
-							<select class="booking_input">
-								<option>1 guest</option>
-								<option selected>2 guests</option>
-								<option>3 guests</option>
-								<option>4 guests</option>
-							</select>
-						</div>
-						<div class="booking_submit_wrap">
-							<input class="booking_submit" type="submit" value="Check availability →">
-						</div>
-					</form>
-
-				</div>
+		<section class="intro_section">
+			<div class="intro_section_inner">
+				<h1 class="intro_title">
+					Authentic Hotel
+					<span class="intro_title_row">in <em>Bukhara</em></span>
+				</h1>
+				<p class="intro_lead">
+					Thirty-two rooms in the old city — five minutes on foot from Po-i-Kalyan, the Ark and Lyabi-Hauz.
+				</p>
 			</div>
-		</div>
+		</section>
 
 		<section class="welcome_section" id="about">
 			<div class="welcome_section_inner">

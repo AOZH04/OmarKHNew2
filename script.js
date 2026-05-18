@@ -42,6 +42,22 @@
     inputs[1].min = fmt(tomorrow);
   }
 
+  // ---------- hero CTA → wobble the booking form ----------
+  var reserveBtn = document.querySelector('.hero_section .btn_primary');
+  var bookingCard = document.querySelector('.booking_card');
+  if (reserveBtn && bookingCard) {
+    reserveBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      bookingCard.classList.remove('is_shaking');
+      // force reflow so the animation restarts on subsequent clicks
+      void bookingCard.offsetWidth;
+      bookingCard.classList.add('is_shaking');
+    });
+    bookingCard.addEventListener('animationend', function (e) {
+      if (e.animationName === 'wobble') bookingCard.classList.remove('is_shaking');
+    });
+  }
+
   // ---------- reveal sections on scroll (subtle, with safe fallback) ----------
   if ('IntersectionObserver' in window) {
     document.documentElement.classList.add('js_reveal');
@@ -148,7 +164,7 @@
       var submit = form.querySelector('input[type="submit"]');
       if (!submit) return;
       var original = submit.value;
-      submit.value = '✓  Got it — we will write back';
+      submit.value = '✓  Got it ';
       submit.disabled = true;
       submit.style.background = 'var(--accent_dark)';
       setTimeout(function () {

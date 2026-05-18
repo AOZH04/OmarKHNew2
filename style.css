@@ -79,7 +79,7 @@ body {
   color: var(--ink_soft);
 }
 
-h1, h2, h3, .lead_heading, .hero_title, .features_heading,
+h1, h2, h3, .lead_heading, .intro_title, .features_heading,
 .rooms_heading, .contact_heading, .room_name, .feature_title {
   font-family: var(--font_display);
   font-weight: 400;
@@ -253,15 +253,6 @@ em {
   object-fit: cover;
   z-index: 0;
 }
-.hero_section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 8, 5, 0.52);
-  z-index: 1;
-  pointer-events: none;
-}
-
 .hero_section_inner {
   display: block;
   padding-top: 48px;
@@ -278,60 +269,16 @@ em {
 }
 
 .hero_card {
-  background: rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-radius: 15px;
-  padding: 40px 48px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 48px;
-  align-items: center;
+  display: block;
 }
 
-/* color overrides for video background (outside card) */
+/* color overrides for video background */
 .hero_section .btn_ghost { color: #fff; border-color: rgba(255, 255, 255, 0.6); }
 .hero_section .btn_ghost:hover { background: #fff; color: var(--ink); }
 .hero_section .stat_num { color: #fff; }
 .hero_section .stat_num i { color: rgba(255, 255, 255, 0.6); }
 .hero_section .stat_label { color: rgba(255, 255, 255, 0.55); }
 .hero_section .hero_stats > * + * { border-left-color: rgba(255, 255, 255, 0.2); }
-
-/* color overrides inside the card */
-.hero_card .hero_title { color: #fff; }
-.hero_card .hero_title em::after { background: rgba(180, 116, 34, 0.5); }
-.hero_card .hero_lead { color: rgba(255, 255, 255, 0.78); max-width: none; }
-
-.hero_title {
-  font-size: clamp(44px, 5.6vw, 88px);
-  line-height: 0.98;
-  letter-spacing: -0.025em;
-  font-weight: 400;
-  font-variation-settings: "opsz" 144, "SOFT" 40;
-  animation: rise 0.9s 0.1s both cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-.hero_title_row { display: block; }
-.hero_title em {
-  position: relative;
-}
-.hero_title em::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 6%;
-  height: 4px;
-  background: rgba(180, 116, 34, 0.14);
-  z-index: -1;
-}
-
-.hero_lead {
-  font-size: 17px;
-  line-height: 1.65;
-  color: var(--ink_med);
-  max-width: 540px;
-  animation: rise 0.9s 0.25s both cubic-bezier(0.2, 0.8, 0.2, 1);
-}
 
 .hero_cta_row {
   display: flex;
@@ -425,13 +372,53 @@ em {
 
 
 /* =========================================================
-   BOOKING — featured card
+   INTRO — headline strip below the hero
    ========================================================= */
-.booking_strip {
+.intro_section {
   position: relative;
   padding-top: 96px;
   padding-bottom: 96px;
 }
+.intro_section_inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.intro_section_inner > * + * { margin-left: 48px; }
+
+.intro_title {
+  font-size: clamp(44px, 5.6vw, 88px);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 40;
+  animation: rise 0.9s 0.1s both cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.intro_title_row { display: block; }
+.intro_title em { position: relative; }
+.intro_title em::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6%;
+  height: 4px;
+  background: rgba(180, 116, 34, 0.14);
+  z-index: -1;
+}
+
+.intro_lead {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink_med);
+  max-width: 540px;
+  flex-shrink: 0;
+  animation: rise 0.9s 0.25s both cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* =========================================================
+   BOOKING — featured card
+   ========================================================= */
 .booking_card {
   background:
     radial-gradient(900px 400px at 90% 110%, rgba(184, 120, 42, 0.18), transparent 60%),
@@ -1015,6 +1002,18 @@ em {
   from { opacity: 0; transform: translateY(22px) scale(0.985); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
+@keyframes wobble {
+  0%   { transform: translateX(0) rotate(0); }
+  15%  { transform: translateX(-12px) rotate(-0.8deg); }
+  30%  { transform: translateX(10px) rotate(0.6deg); }
+  45%  { transform: translateX(-7px) rotate(-0.4deg); }
+  60%  { transform: translateX(5px) rotate(0.3deg); }
+  75%  { transform: translateX(-3px) rotate(-0.15deg); }
+  100% { transform: translateX(0) rotate(0); }
+}
+.booking_card.is_shaking {
+  animation: wobble 0.7s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
 
 /* JS-driven scroll reveals (only active when .js_reveal is on <html>) */
 .js_reveal .section_marker,
@@ -1155,14 +1154,18 @@ em {
     border-left: 1px solid rgba(255, 255, 255, 0.2);
   }
   .stat_num { font-size: 28px; }
-  .hero_card {
-    grid-template-columns: 1fr;
-    row-gap: 20px;
-    padding: 28px 24px;
-  }
-  .hero_title { font-size: clamp(38px, 9.6vw, 56px); }
 
-  /* booking strip */
+  /* intro */
+  .intro_section { padding: 64px 0; }
+  .intro_section_inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .intro_section_inner > * + * { margin-left: 0; margin-top: 20px; }
+  .intro_title { font-size: clamp(38px, 9.6vw, 56px); }
+  .intro_lead { max-width: none; }
+
+  /* booking card */
   .booking_card {
     padding: 28px 24px 28px 28px;
     box-shadow:
@@ -1230,8 +1233,8 @@ em {
 @media (max-width: 480px) {
   [class$="_inner"] { padding: 0 16px; }
   .hero_section_inner { padding-top: 32px; padding-bottom: 32px; }
-  .hero_card { padding: 20px 18px; }
-  .hero_title { font-size: clamp(34px, 10vw, 48px); }
+  .intro_section { padding: 56px 0; }
+  .intro_title { font-size: clamp(34px, 10vw, 48px); }
   .hero_stats > * + * { margin-left: 12px; padding-left: 12px; }
   .stat_num { font-size: 24px; }
   .hero_stats li > * + * { margin-left: 8px; }
